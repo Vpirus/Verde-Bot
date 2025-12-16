@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
@@ -553,7 +553,9 @@
       }
 
       @keyframes typing {
-        0%, 60%, 100% {
+        0%,
+        60%,
+        100% {
           opacity: 0.3;
           transform: translateY(0);
         }
@@ -722,7 +724,8 @@
             <i class="fa-solid fa-leaf"></i>
           </div>
           <div class="message-content">
-            Hi! I'm your Verde Home assistant. How can I help you with our plants today?
+            Hi! I'm your Verde Home assistant. How can I help you with our
+            plants today?
           </div>
         </div>
       </div>
@@ -795,7 +798,7 @@
           name: "Bougainvillea",
           price: 350,
           type: "outdoor",
-          img: "https://images.pexels.com/photos/15966286/pexels-photo-15966286.jpeg?auto=compress&cs=tinysrgb&w=600",
+          img: "https://images.pexels.com/photos/1000494/pexels-photo-1000494.jpeg?auto=compress&cs=tinysrgb&w=600",
           desc: "Vibrant flowering plant for gardens and patios.",
           water: "2-3x weekly",
           light: "Full sun",
@@ -805,7 +808,7 @@
           name: "Boston Fern",
           price: 220,
           type: "indoor",
-          img: "https://images.pexels.com/photos/7084307/pexels-photo-7084307.jpeg?auto=compress&cs=tinysrgb&w=600",
+          img: "https://images.pexels.com/photos/9790672/pexels-photo-9790672.jpeg?auto=compress&cs=tinysrgb&w=600",
           desc: "Delicate fronds add a soft touch to any room.",
           water: "2x weekly",
           light: "Indirect",
@@ -879,14 +882,14 @@
         const messagesDiv = document.getElementById("chatMessages");
         const messageDiv = document.createElement("div");
         messageDiv.className = "message" + (isUser ? " user" : "");
-        
+
         messageDiv.innerHTML = `
           <div class="message-avatar">
-            <i class="fa-solid ${isUser ? 'fa-user' : 'fa-leaf'}"></i>
+            <i class="fa-solid ${isUser ? "fa-user" : "fa-leaf"}"></i>
           </div>
           <div class="message-content">${content}</div>
         `;
-        
+
         messagesDiv.appendChild(messageDiv);
         messagesDiv.scrollTop = messagesDiv.scrollHeight;
       }
@@ -919,40 +922,47 @@
         const input = document.getElementById("chatInput");
         const sendBtn = document.getElementById("sendBtn");
         const message = input.value.trim();
-        
+
         if (!message) return;
-        
+
         // Add user message
         addMessage(message, true);
         input.value = "";
         sendBtn.disabled = true;
-        
+
         // Show typing indicator
         showTypingIndicator();
-        
+
         try {
           // Call Flowise API
-          const response = await fetch("https://cloud.flowiseai.com/api/v1/prediction/ff41674a-c130-46eb-8e22-f09f1e6daf10", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-              question: message
-            })
-          });
-          
+          const response = await fetch(
+            "https://cloud.flowiseai.com/api/v1/prediction/ff41674a-c130-46eb-8e22-f09f1e6daf10",
+            {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                question: message,
+              }),
+            }
+          );
+
           const data = await response.json();
           removeTypingIndicator();
-          
+
           // Add bot response
-          addMessage(data.text || data.answer || "I'm here to help! Could you rephrase that?");
+          addMessage(
+            data.text ||
+              data.answer ||
+              "I'm here to help! Could you rephrase that?"
+          );
         } catch (error) {
           removeTypingIndicator();
           addMessage("Sorry, I'm having trouble connecting. Please try again!");
           console.error("Chat error:", error);
         }
-        
+
         sendBtn.disabled = false;
         input.focus();
       }
