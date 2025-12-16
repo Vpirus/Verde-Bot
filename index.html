@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Verde Home</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Inter", sans-serif;
+        color: #1a1a1a;
+        line-height: 1.6;
+        background: #fafafa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Navigation */
+      nav {
+        background: white;
+        padding: 20px 0;
+        border-bottom: 1px solid #e0e0e0;
+        position: sticky;
+        top: 0;
+        z-index: 100;
+      }
+
+      .nav-content {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .logo {
+        font-size: 20px;
+        font-weight: 600;
+        color: #2d5016;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+      }
+
+      .logo i {
+        font-size: 22px;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 40px;
+        list-style: none;
+      }
+
+      .nav-links a {
+        text-decoration: none;
+        color: #666;
+        font-size: 14px;
+        transition: color 0.3s;
+      }
+
+      .nav-links a:hover {
+        color: #2d5016;
+      }
+
+      /* Hero */
+      .hero {
+        padding: 120px 0 80px;
+        text-align: center;
+        background: white;
+      }
+
+      .hero h1 {
+        font-size: 48px;
+        font-weight: 300;
+        margin-bottom: 16px;
+        color: #1a1a1a;
+      }
+
+      .hero p {
+        font-size: 18px;
+        color: #666;
+        margin-bottom: 40px;
+      }
+
+      .btn {
+        padding: 14px 32px;
+        background: #2d5016;
+        color: white;
+        border: none;
+        font-size: 14px;
+        cursor: pointer;
+        transition: all 0.3s;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn:hover {
+        background: #1f3810;
+      }
+
+      /* Section */
+      section {
+        padding: 80px 0;
+      }
+
+      .section-title {
+        font-size: 32px;
+        font-weight: 300;
+        margin-bottom: 60px;
+        text-align: center;
+      }
+
+      /* Filter */
+      .filter {
+        display: flex;
+        justify-content: center;
+        gap: 12px;
+        margin-bottom: 60px;
+        flex-wrap: wrap;
+      }
+
+      .filter button {
+        padding: 8px 20px;
+        background: white;
+        border: 1px solid #e0e0e0;
+        color: #666;
+        font-size: 13px;
+        cursor: pointer;
+        transition: all 0.3s;
+      }
+
+      .filter button:hover,
+      .filter button.active {
+        background: #2d5016;
+        color: white;
+        border-color: #2d5016;
+      }
+
+      /* Grid */
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .card {
+        background: white;
+        cursor: pointer;
+        transition: transform 0.3s;
+        border: 1px solid #e0e0e0;
+      }
+
+      .card:hover {
+        transform: translateY(-4px);
+      }
+
+      .card img {
+        width: 100%;
+        height: 280px;
+        object-fit: cover;
+        display: block;
+      }
+
+      .card-content {
+        padding: 20px;
+      }
+
+      .card h3 {
+        font-size: 18px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .card .price {
+        font-size: 16px;
+        color: #2d5016;
+        font-weight: 500;
+      }
+
+      .card .type {
+        font-size: 12px;
+        color: #999;
+        margin-top: 8px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .card .type i {
+        font-size: 11px;
+      }
+
+      .card.sold {
+        opacity: 0.5;
+      }
+
+      /* Care Section */
+      .care-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 40px;
+        background: white;
+        padding: 60px;
+        border: 1px solid #e0e0e0;
+      }
+
+      .care-item {
+        display: flex;
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      .care-item i {
+        font-size: 28px;
+        color: #2d5016;
+      }
+
+      .care-item h3 {
+        font-size: 18px;
+        font-weight: 500;
+      }
+
+      .care-item p {
+        color: #666;
+        font-size: 14px;
+      }
+
+      /* Footer */
+      footer {
+        background: #1a1a1a;
+        color: white;
+        padding: 60px 0 30px;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        margin-bottom: 40px;
+      }
+
+      .footer-grid h4 {
+        font-size: 14px;
+        font-weight: 500;
+        margin-bottom: 16px;
+      }
+
+      .footer-grid p {
+        font-size: 13px;
+        color: #999;
+        margin-bottom: 8px;
+      }
+
+      .copyright {
+        text-align: center;
+        padding-top: 30px;
+        border-top: 1px solid #333;
+        color: #666;
+        font-size: 12px;
+      }
+
+      /* Modal */
+      .modal {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        z-index: 1000;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .modal.active {
+        display: flex;
+      }
+
+      .modal-content {
+        background: white;
+        max-width: 900px;
+        width: 90%;
+        max-height: 90vh;
+        overflow-y: auto;
+        position: relative;
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 20px;
+        right: 20px;
+        font-size: 32px;
+        cursor: pointer;
+        color: #666;
+        background: none;
+        border: none;
+        z-index: 10;
+      }
+
+      .modal-body {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .modal-body img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      .modal-info {
+        padding: 60px 40px;
+      }
+
+      .modal-info h2 {
+        font-size: 28px;
+        font-weight: 400;
+        margin-bottom: 12px;
+      }
+
+      .modal-info .price {
+        font-size: 24px;
+        color: #2d5016;
+        margin-bottom: 24px;
+        display: block;
+      }
+
+      .modal-info p {
+        color: #666;
+        margin-bottom: 24px;
+        line-height: 1.8;
+      }
+
+      .modal-specs {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 32px;
+        font-size: 13px;
+        color: #666;
+      }
+
+      .modal-specs span {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+      }
+
+      .modal-specs i {
+        color: #2d5016;
+      }
+
+      @media (max-width: 768px) {
+        .hero h1 {
+          font-size: 36px;
+        }
+        .nav-links {
+          gap: 20px;
+        }
+        .modal-body {
+          grid-template-columns: 1fr;
+        }
+        .care-grid {
+          padding: 40px 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <div class="container nav-content">
+        <div class="logo">
+          <i class="fa-solid fa-leaf"></i>
+          Verde Home
+        </div>
+        <ul class="nav-links">
+          <li><a href="#plants">Plants</a></li>
+          <li><a href="#care">Care</a></li>
+          <li><a href="#contact">Visit</a></li>
+        </ul>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="container">
+        <h1>Healthy Plants for Your Space</h1>
+        <p>Locally grown in Quezon City</p>
+        <a href="#plants" class="btn">Browse Collection</a>
+      </div>
+    </section>
+
+    <section id="plants">
+      <div class="container">
+        <h2 class="section-title">Available Plants</h2>
+
+        <div class="filter">
+          <button class="active" onclick="filter('all', this)">All</button>
+          <button onclick="filter('indoor', this)">Indoor</button>
+          <button onclick="filter('outdoor', this)">Outdoor</button>
+          <button onclick="filter('succulent', this)">Succulents</button>
+        </div>
+
+        <div class="grid" id="plantGrid"></div>
+      </div>
+    </section>
+
+    <section id="care" style="background: white">
+      <div class="container">
+        <h2 class="section-title">Plant Care Basics</h2>
+        <div class="care-grid">
+          <div class="care-item">
+            <i class="fa-solid fa-droplet"></i>
+            <h3>Watering</h3>
+            <p>
+              Water when the top inch of soil feels dry. Avoid overwatering.
+            </p>
+          </div>
+          <div class="care-item">
+            <i class="fa-solid fa-sun"></i>
+            <h3>Sunlight</h3>
+            <p>Most indoor plants prefer bright, indirect light.</p>
+          </div>
+          <div class="care-item">
+            <i class="fa-solid fa-seedling"></i>
+            <h3>Feeding</h3>
+            <p>Fertilize monthly during growing season (spring and summer).</p>
+          </div>
+          <div class="care-item">
+            <i class="fa-solid fa-scissors"></i>
+            <h3>Maintenance</h3>
+            <p>Remove dead leaves and check for pests regularly.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <footer id="contact">
+      <div class="container">
+        <div class="footer-grid">
+          <div>
+            <h4>Verde Home</h4>
+            <p>Neighborhood plant nursery</p>
+          </div>
+          <div>
+            <h4>Visit</h4>
+            <p>
+              <i class="fa-solid fa-location-dot"></i> 123 Amoranto St, Quezon
+              City
+            </p>
+            <p><i class="fa-solid fa-clock"></i> Mon-Sun: 8 AM - 6 PM</p>
+          </div>
+          <div>
+            <h4>Contact</h4>
+            <p><i class="fa-solid fa-phone"></i> 0917-PLANTS</p>
+            <p><i class="fa-brands fa-facebook"></i> @VerdeHome</p>
+          </div>
+        </div>
+        <div class="copyright">© 2024 Verde Home</div>
+      </div>
+    </footer>
+
+    <div class="modal" id="modal">
+      <div class="modal-content">
+        <button class="modal-close" onclick="closeModal()">×</button>
+        <div class="modal-body">
+          <img id="modalImg" src="" alt="" />
+          <div class="modal-info">
+            <h2 id="modalName"></h2>
+            <span class="price" id="modalPrice"></span>
+            <p id="modalDesc"></p>
+            <div class="modal-specs">
+              <span id="modalWater"></span>
+              <span id="modalLight"></span>
+            </div>
+            <button
+              class="btn"
+              onclick="alert('Visit our nursery to reserve this plant!')"
+            >
+              Reserve Plant
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const plants = [
+        {
+          name: "Monstera Deliciosa",
+          price: 450,
+          type: "indoor",
+          img: "https://images.pexels.com/photos/6913826/pexels-photo-6913826.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Easy-care tropical plant with distinctive split leaves.",
+          water: "Weekly",
+          light: "Bright indirect",
+          icon: "fa-home",
+        },
+        {
+          name: "Snake Plant",
+          price: 250,
+          type: "indoor",
+          img: "https://images.pexels.com/photos/2123482/pexels-photo-2123482.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Hardy plant that thrives on neglect. Perfect for beginners.",
+          water: "Bi-weekly",
+          light: "Low to bright",
+          icon: "fa-home",
+        },
+        {
+          name: "Golden Pothos",
+          price: 180,
+          type: "indoor",
+          img: "https://images.pexels.com/photos/4751978/pexels-photo-4751978.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Fast-growing vine with heart-shaped leaves.",
+          water: "Weekly",
+          light: "Medium",
+          icon: "fa-home",
+        },
+        {
+          name: "Aloe Vera",
+          price: 200,
+          type: "succulent",
+          img: "https://images.pexels.com/photos/3076899/pexels-photo-3076899.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Medicinal succulent with soothing gel.",
+          water: "Bi-weekly",
+          light: "Bright",
+          icon: "fa-cactus",
+        },
+        {
+          name: "Jade Plant",
+          price: 280,
+          type: "succulent",
+          img: "https://images.pexels.com/photos/6913495/pexels-photo-6913495.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Classic succulent symbolizing prosperity.",
+          water: "Bi-weekly",
+          light: "Bright",
+          icon: "fa-cactus",
+        },
+        {
+          name: "Bougainvillea",
+          price: 350,
+          type: "outdoor",
+          img: "https://images.pexels.com/photos/15966286/pexels-photo-15966286.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Vibrant flowering plant for gardens and patios.",
+          water: "2-3x weekly",
+          light: "Full sun",
+          icon: "fa-tree",
+        },
+        {
+          name: "Boston Fern",
+          price: 220,
+          type: "indoor",
+          img: "https://images.pexels.com/photos/7084307/pexels-photo-7084307.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Delicate fronds add a soft touch to any room.",
+          water: "2x weekly",
+          light: "Indirect",
+          icon: "fa-home",
+        },
+        {
+          name: "Hibiscus",
+          price: 380,
+          type: "outdoor",
+          img: "https://images.pexels.com/photos/15814538/pexels-photo-15814538.jpeg?auto=compress&cs=tinysrgb&w=600",
+          desc: "Large tropical flowers in brilliant colors.",
+          water: "Daily",
+          light: "Full sun",
+          icon: "fa-tree",
+        },
+      ];
+
+      function renderPlants(filter = "all") {
+        const grid = document.getElementById("plantGrid");
+        const filtered =
+          filter === "all" ? plants : plants.filter((p) => p.type === filter);
+
+        grid.innerHTML = filtered
+          .map(
+            (p, i) => `
+                <div class="card" onclick="openModal(${i})">
+                    <img src="${p.img}" alt="${p.name}">
+                    <div class="card-content">
+                        <h3>${p.name}</h3>
+                        <div class="price">₱${p.price}</div>
+                        <div class="type"><i class="fa-solid ${p.icon}"></i> ${p.type}</div>
+                    </div>
+                </div>
+            `
+          )
+          .join("");
+      }
+
+      function filter(type, btn) {
+        document
+          .querySelectorAll(".filter button")
+          .forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        renderPlants(type);
+      }
+
+      function openModal(index) {
+        const p = plants[index];
+        document.getElementById("modalImg").src = p.img;
+        document.getElementById("modalName").textContent = p.name;
+        document.getElementById("modalPrice").textContent = "₱" + p.price;
+        document.getElementById("modalDesc").textContent = p.desc;
+        document.getElementById("modalWater").innerHTML =
+          '<i class="fa-solid fa-droplet"></i> ' + p.water;
+        document.getElementById("modalLight").innerHTML =
+          '<i class="fa-solid fa-sun"></i> ' + p.light;
+        document.getElementById("modal").classList.add("active");
+      }
+
+      function closeModal() {
+        document.getElementById("modal").classList.remove("active");
+      }
+
+      renderPlants();
+    </script>
+  </body>
+</html>
